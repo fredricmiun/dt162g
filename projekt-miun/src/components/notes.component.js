@@ -74,7 +74,7 @@ export default class Notes extends Component {
   fetchNoteDataAfterChange() {
     // Uppdatera setState på nytt, baserat på ny data
     axios
-      .get("http://localhost:5000/notes/")
+      .get("notes/")
       .then(response => {
         this.setState({
           notes: response.data
@@ -85,7 +85,7 @@ export default class Notes extends Component {
 
   fetchNoteData() {
     axios
-      .get("http://localhost:5000/notes/")
+      .get("notes/")
       .then(response => {
         this.setState({
           notes: response.data,
@@ -116,12 +116,10 @@ export default class Notes extends Component {
       noteInformation: this.state.noteInformation
     };
 
-    axios
-      .post("http://localhost:5000/notes/update/" + this.state.noteId, note)
-      .then(res => {
-        console.log(res.data);
-        this.fetchNoteDataAfterChange();
-      });
+    axios.post("notes/update/" + this.state.noteId, note).then(res => {
+      console.log(res.data);
+      this.fetchNoteDataAfterChange();
+    });
 
     console.log(note);
     console.log(e.target.value.length);
@@ -137,20 +135,16 @@ export default class Notes extends Component {
       noteInformation: e.target.value
     };
 
-    axios
-      .post("http://localhost:5000/notes/update/" + this.state.noteId, note)
-      .then(res => {
-        console.log(res.data);
-        this.fetchNoteDataAfterChange();
-      });
+    axios.post("notes/update/" + this.state.noteId, note).then(res => {
+      console.log(res.data);
+      this.fetchNoteDataAfterChange();
+    });
 
     console.log(note);
   }
 
   deleteNote(id) {
-    axios
-      .delete("http://localhost:5000/notes/" + id)
-      .then(res => console.log(res.data));
+    axios.delete("notes/" + id).then(res => console.log(res.data));
     this.setState({
       notes: this.state.notes.filter(el => el._id !== id)
     });
@@ -158,7 +152,7 @@ export default class Notes extends Component {
 
   handleClick(id) {
     axios
-      .get("http://localhost:5000/notes/" + id)
+      .get("notes/" + id)
       .then(response => {
         this.setState({
           noteId: id,
@@ -195,11 +189,11 @@ export default class Notes extends Component {
       noteName: this.state.newNoteName,
       noteInformation: ""
     };
-    axios.post("http://localhost:5000/notes/add", note).then(res => {
+    axios.post("notes/add", note).then(res => {
       console.log(res.data);
       // Uppdatera setState på nytt, baserat på ny data
       axios
-        .get("http://localhost:5000/notes/")
+        .get("notes/")
         .then(response => {
           this.setState({
             notes: response.data
