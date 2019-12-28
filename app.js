@@ -29,11 +29,11 @@ app.use("/notes", notesRouter);
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {
   // Set static folder
-  app.use(express.static("../projekt-miun/build"));
+  app.use(express.static("projekt-miun/build"));
 
   app.get("*", (req, res) => {
     res.sendFile(
-      path.resolve(__dirname, "../projekt-miun", "build", "index.html")
+      path.resolve(__dirname, "projekt-miun", "build", "index.html")
     );
   });
 }
