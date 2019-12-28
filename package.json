@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
-    "client": "npm start --prefix ../projekt-miun",
+    "client": "npm start --prefix projekt-miun",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix ../projekt-miun && npm run build --prefix ../projekt-miun"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix projekt-miun && npm run build --prefix projekt-miun"
   },
   "author": "Fredric Färholt",
   "license": "ISC",
