@@ -3,6 +3,7 @@ let Notes = require("../model/notes.model.js");
 
 router.route("/").get((req, res) => {
   Notes.find()
+    .sort({ noteDate: -1 })
     .then(notes => res.json(notes))
     .catch(err => res.status(400).json("Error: " + err));
 });

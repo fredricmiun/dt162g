@@ -103,9 +103,9 @@ export default class Notes extends Component {
   }
 
   onChangeNoteName(e) {
-    if (e.target.value.length === 0) {
-      e.target.value = "No name";
-    }
+    // if (e.target.value.length === 0) {
+    //   e.target.value = "No name";
+    // }
 
     this.setState({
       noteName: e.target.value
@@ -247,6 +247,7 @@ export default class Notes extends Component {
                   type="text"
                   value={this.state.noteName}
                   onChange={this.onChangeNoteName}
+                  placeholder="Skriv anteckningsnamn här..."
                 />
               </div>
               <div className="input-group" style={textareaMinHeight}>
