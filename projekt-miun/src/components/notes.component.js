@@ -21,6 +21,7 @@ const bottomRowPaddingBottom = {
   paddingBottom: "60px"
 };
 
+// Lista över anteckningar
 const CurrentNotesList = props => (
   <a
     className="list-group-item list-group-item-action"
@@ -55,6 +56,7 @@ export default class Notes extends Component {
   constructor(props) {
     super(props);
 
+    // bind data
     this.onChangeNoteName = this.onChangeNoteName.bind(this);
     this.onChangeNoteInformation = this.onChangeNoteInformation.bind(this);
     this.deleteNote = this.deleteNote.bind(this);
@@ -62,6 +64,7 @@ export default class Notes extends Component {
     this.onChangenewNoteName = this.onChangenewNoteName.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
+    // state
     this.state = {
       notes: [],
       noteId: "",
@@ -72,8 +75,8 @@ export default class Notes extends Component {
     };
   }
 
+  // Används för att uppdatera innehållet i listan över anteckningar på nytt vid förändringar
   fetchNoteDataAfterChange() {
-    // Uppdatera setState på nytt, baserat på ny data
     axios
       .get("notes/")
       .then(response => {
@@ -99,11 +102,9 @@ export default class Notes extends Component {
       .catch(error => console.log(error));
   }
 
+  // Hantera förändringar på namn
+  // Uppdatera sedan med setState och med fetchNoteDataAfterChange()
   onChangeNoteName(e) {
-    // if (e.target.value.length === 0) {
-    //   e.target.value = "No name";
-    // }
-
     this.setState({
       noteName: e.target.value
     });
@@ -122,6 +123,8 @@ export default class Notes extends Component {
     console.log(e.target.value.length);
   }
 
+  // Hantera förändringar på anteckningsinnehåll
+  // Uppdatera därefter state och med fetchNoteDataAfterChange()
   onChangeNoteInformation(e) {
     this.setState({
       noteInformation: e.target.value
@@ -140,6 +143,7 @@ export default class Notes extends Component {
     console.log(note);
   }
 
+  // Ta bort anteckning
   deleteNote(id) {
     axios.delete("notes/" + id).then(res => console.log(res.data));
     this.setState({
@@ -147,6 +151,7 @@ export default class Notes extends Component {
     });
   }
 
+  // Hantera klick på anteckningar. Visa rätt anteckning baserat på vald anteckning.
   handleClick(id) {
     axios
       .get("notes/" + id)
@@ -161,6 +166,7 @@ export default class Notes extends Component {
       .catch(error => console.log(error));
   }
 
+  // Anteckningslista
   notesList() {
     return this.state.notes.map(currentnote => {
       return (
@@ -174,12 +180,14 @@ export default class Notes extends Component {
     });
   }
 
+  // Ny anteckning
   onChangenewNoteName(e) {
     this.setState({
       newNoteName: e.target.value
     });
   }
 
+  // Submit för ny anteckning
   onSubmit(e) {
     e.preventDefault();
     const note = {
