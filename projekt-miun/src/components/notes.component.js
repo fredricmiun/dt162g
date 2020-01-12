@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import TimeAgo from "react-timeago";
 
+// Custom css
 const textareaMinHeight = {
   minHeight: "300px",
   height: "100%",
@@ -83,7 +84,7 @@ export default class Notes extends Component {
       .catch(error => console.log(error));
   }
 
-  fetchNoteData() {
+  componentDidMount() {
     axios
       .get("notes/")
       .then(response => {
@@ -96,10 +97,6 @@ export default class Notes extends Component {
         });
       })
       .catch(error => console.log(error));
-  }
-
-  componentDidMount() {
-    this.fetchNoteData();
   }
 
   onChangeNoteName(e) {
